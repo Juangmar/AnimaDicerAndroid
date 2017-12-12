@@ -5,6 +5,11 @@
     <string name="tab_text_3">Combate</string>
     <string name="tab_text_4">Armas/Armaduras</string>
     <string name="tab_text_5">Extra</string>
+    <string name="tab_1_cat">Principal</string>
+    <string name="tab_2_cat">Secundarias</string>
+    <string name="tab_3_cat">Combate</string>
+    <string name="tab_4_cat">Armas y Armaduras</string>
+    <string name="tab_5_cat">Extra</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="open">Open</string>
