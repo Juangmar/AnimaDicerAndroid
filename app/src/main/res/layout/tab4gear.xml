@@ -4,7 +4,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.theredwolfstudio.animadicer.MainActivity$PlaceholderFragment">
+    tools:context="com.theredwolfstudio.animadicer.Tab4Gear">
 
     <TextView
         android:id="@+id/section_label"
@@ -17,6 +17,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        android:text="Sección de equipo"
+        />
 
 </android.support.constraint.ConstraintLayout>
