@@ -1,4 +1,4 @@
-package com.theredwolfstudio.animadicer;
+package com.theredwolfstudio.animadicer.views;
 
 /**
  * Created by Koldur on 15/12/2017.
@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import com.theredwolfstudio.animadicer.R;
 
 public class Tab1Main extends Fragment{
 

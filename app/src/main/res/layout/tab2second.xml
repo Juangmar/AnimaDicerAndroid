@@ -4,7 +4,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.theredwolfstudio.animadicer.Tab2Second">
+    tools:context="com.theredwolfstudio.animadicer.views.Tab2Second">
 
     <TextView
         android:id="@+id/section_label"

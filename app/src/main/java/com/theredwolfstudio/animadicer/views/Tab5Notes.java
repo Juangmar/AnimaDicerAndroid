@@ -1,4 +1,4 @@
-package com.theredwolfstudio.animadicer;
+package com.theredwolfstudio.animadicer.views;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.theredwolfstudio.animadicer.R;
 
 /**
  * Created by Koldur on 15/12/2017.
