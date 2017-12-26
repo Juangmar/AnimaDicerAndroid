@@ -34,7 +34,7 @@ public class charge extends Activity {
             public void run(){
                 try{
                     sleep(3000);
-                    charge();
+
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
@@ -44,6 +44,7 @@ public class charge extends Activity {
             }
         };
         timerThread.start();
+        charge();
     }
 
     @Override
