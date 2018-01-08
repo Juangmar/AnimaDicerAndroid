@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,26 +28,68 @@ public class charge extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash);
-
         log = findViewById(R.id.splashLoadingLog);
+        new chargeFile().execute();
 
-        Thread timerThread = new Thread(){
-            public void run(){
-                try{
-                    sleep(3000);
 
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }finally{
-                    Intent intent = new Intent(charge.this,MainActivity.class);
-                    startActivity(intent);
-                }
-            }
-        };
-        timerThread.start();
-        charge();
     }
 
+    private class chargeFile extends AsyncTask<Void, Integer, Void>{
+
+        //log = findViewById(R.id.splashLoadingLog);
+
+        /*
+
+        try {
+            Thread.sleep(3000);
+            log.setText("Primer ciclo");
+            Thread.sleep(3000);
+            log.setText("Segundo ciclo");
+            Thread.sleep(3000);
+            log.setText("Tercer ciclo");
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        } finally {
+            Intent intent = new Intent(charge.this,MainActivity.class);
+            startActivity(intent);
+        }
+
+        */
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    publishProgress(i);
+                    Thread.sleep(3000);
+                    // Escape early if cancel() is called
+                    if (isCancelled()) break;
+                }
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {}
+
+        @Override
+        protected void onProgressUpdate(Integer... voids) {
+            setLog("Ciclo numero " + voids[0] + " completado");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            Intent intent = new Intent(charge.this,MainActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void setLog(String val){
+        log.setText(val);
+    }
     @Override
     protected void onPause() {
         // TODO Auto-generated method stub
