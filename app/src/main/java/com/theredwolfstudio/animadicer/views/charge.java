@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.theredwolfstudio.animadicer.Codes;
 import com.theredwolfstudio.animadicer.R;
 
 /**
@@ -60,13 +61,23 @@ public class charge extends Activity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                for (int i = 0; i < 5; i++) {
-                    publishProgress(i);
-                    Thread.sleep(3000);
+                    publishProgress(Codes.initLoading);
+                        Thread.sleep(1000);
+                    SharedPreferences sharedPref = getSharedPreferences("pjs", Context.MODE_PRIVATE);
+                    publishProgress(Codes.gettingSharedPreferences);
+                        Thread.sleep(1000);
+                    int pjs = sharedPref.getInt(getString(R.string.pjsNumber), 0);
+                    if(pjs==0){
+                        publishProgress(Codes.noProfileDetected);
+                        Thread.sleep(1000);
+                    } else {
+                        publishProgress(Codes.profilesDetected);
+                        Thread.sleep(1000);
+                    }
+                    Thread.sleep(1000);
                     // Escape early if cancel() is called
-                    if (isCancelled()) break;
-                }
-            }catch(InterruptedException e){
+                    if (isCancelled()) return null;
+            } catch(InterruptedException e){
                 e.printStackTrace();
             }
             return null;
@@ -77,7 +88,13 @@ public class charge extends Activity {
 
         @Override
         protected void onProgressUpdate(Integer... voids) {
-            setLog("Ciclo numero " + voids[0] + " completado");
+            switch (voids[0]){
+                case Codes.initLoading: setLog("Iniciando la carga de personajes"); break;
+                case Codes.gettingSharedPreferences: setLog("Accediendo a recursos"); break;
+                case Codes.noProfileDetected: setLog("No se han detectado perfiles guardados"); break;
+                case Codes.profilesDetected: setLog("Se han detectado perfiles guardados. Cargando el predefinido"); break;
+                default: setLog("Cargando...");
+            }
         }
 
         @Override
@@ -98,15 +115,7 @@ public class charge extends Activity {
     }
     protected void charge() {
 
-        log.setText("Iniciando la carga de personajes");
-        SharedPreferences sharedPref = getSharedPreferences("pjs", Context.MODE_PRIVATE);
-        log.setText("Cargando número de personajes almacenados");
-       int pjs = sharedPref.getInt(getString(R.string.pjsNumber), 0);
-       if(pjs==0){
-           chargeNewPJ();
-       } else {
-           chargeFirstPJ();
-       }
+
 
     }
     private void chargeNewPJ(){
